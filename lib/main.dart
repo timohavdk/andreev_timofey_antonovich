@@ -166,7 +166,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: const TextStyle(
                         color: Colors.white70,
                         fontSize: 16,
-                        // overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
