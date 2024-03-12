@@ -57,15 +57,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final String _name = 'Тимофей';
-  final String _surname = 'Андреев';
-  final String _about = '22 года, программист, кроссфитер, магистрант ДВФУ';
+  String _name = 'Timofey';
+  String _surname = 'Andreev';
+  String _about = '22 y.o., programmer';
 
-  void _editName() {}
+  void _onSubmittedName(text) {
+    setState(() => _name = text);
+  }
 
-  void _editSurName() {}
+  void _onSubmittedSurname(text) {
+    setState(() => _surname = text);
+  }
 
-  void _editAbout() {}
+  void _onSubmittedAbout(text) {
+    setState(() => _about = text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: ConstrainedBox(
-          constraints: BoxConstraints.expand(width: 400),
+          constraints: BoxConstraints.expand(width: 320),
           child: Column(
             // Column is also a layout widget. It takes a list of children and
             // arranges them vertically. By default, it sizes itself to fit its
@@ -129,15 +135,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ),
-                        TextButton(
-                          onPressed: _editName,
-                          child: const Icon(
-                            Icons.edit,
-                            color: Colors.white70,
-                            size: 20,
-                            semanticLabel: 'Edit name icon',
-                          ),
-                        )
                       ],
                     ),
                     Row(
@@ -152,15 +149,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           ),
                         ),
-                        TextButton(
-                          onPressed: _editSurName,
-                          child: const Icon(
-                            Icons.edit,
-                            color: Colors.white70,
-                            size: 20,
-                            semanticLabel: 'Edit surname icon',
-                          ),
-                        ),
                       ],
                     )
                   ],
@@ -168,31 +156,52 @@ class _MyHomePageState extends State<MyHomePage> {
               ]),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Flexible(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 16.0, 0),
-                      child: Text(
-                        '$_about',
-                        softWrap: true,
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 20,
-                          // overflow: TextOverflow.ellipsis,
-                        ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 16.0, 0),
+                    child: Text(
+                      '$_about',
+                      softWrap: true,
+                      style: const TextStyle(
+                        color: Colors.white70,
+                        fontSize: 16,
+                        // overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: _editAbout,
-                    child: const Icon(
-                      Icons.edit,
-                      color: Colors.white70,
-                      size: 20,
-                      semanticLabel: 'Edit about icon',
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: 250,
+                    child: TextField(
+                      onSubmitted: _onSubmittedName,
+                      decoration: const InputDecoration(
+                        labelText: 'Name',
+                      ),
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: TextField(
+                      onSubmitted: _onSubmittedSurname,
+                      decoration: const InputDecoration(
+                        labelText: 'Surname',
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 250,
+                    child: TextField(
+                      onSubmitted: _onSubmittedAbout,
+                      decoration: const InputDecoration(
+                        labelText: 'About',
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],
